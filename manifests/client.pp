@@ -7,6 +7,11 @@ class nagios::client {
     source_permissions => use,
     }
 
+  user { "nagios":
+    name => "nagios",
+    ensure => "present",
+    }
+
 #if xinetd.conf does not exist, run the install script
   exec { 'fullinstall':
     command => "/root/linux-nrpe-agent/fullinstall -n",
