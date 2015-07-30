@@ -22,7 +22,7 @@ class nagios::client {
     } -> #and then
     file { "/root/linux-nrpe-agent":
       source             => "puppet:///modules/nagios/linux-nrpe-agent",
-      ensure             => "absent"
+      ensure             => "absent",
       recurse            => true,
       }
 }
