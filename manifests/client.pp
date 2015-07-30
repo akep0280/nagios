@@ -19,7 +19,6 @@ class nagios::client {
     cwd     => "/root/linux-nrpe-agent",
     creates => "/etc/xinetd.conf",
     path    => "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin",
-    notify
     } -> #and then
     file { "/root/linux-nrpe-agent":
       source             => "puppet:///modules/nagios/linux-nrpe-agent",
