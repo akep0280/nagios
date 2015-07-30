@@ -26,7 +26,7 @@ cat <<-IPs_HERE; printf '### %-72s ###\n' $XINETD_ALLOW; cat <<-EOF
 	###                                                                          ###
 	### NRPE is currently set to allow connections only from these IP addresses: ###
 	###                                                                          ###
-IPs_HERE
+172.16.17.95
 	###                                                                          ###
 	### If you would like to change this list, enter all IP addresses to allow,  ###
 	### separated by spaces only, and then press Enter.                          ###
