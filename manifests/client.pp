@@ -9,7 +9,7 @@ class nagios::client {
 
 #if xinetd.conf does not exist, run the install script
   exec { 'fullinstall':
-    command => "fullinstall -n",
+    command => "/root/linux-nrpe-agent/fullinstall -n",
     cwd     => "/root/linux-nrpe-agent",
     creates => "/etc/xinetd.conf",
     path    => "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin",
