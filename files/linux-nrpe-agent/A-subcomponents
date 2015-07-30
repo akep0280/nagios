@@ -1,0 +1,30 @@
+#!/bin/bash -e
+
+# Was previous step completed?
+if [ ! -f installed.firewall ]; then
+	echo "Firewall was not configured - run previous script" >&2
+	exit 1
+fi
+
+# Was this step already completed?
+if [ -f installed.subcomponents ]; then
+	echo "Subcomponents already configured - skipping."
+	exit 0
+fi
+
+# Prepare installation
+mkdir -p /usr/local/nagios/bin \
+	/usr/local/nagios/etc  \
+	/usr/local/nagios/var  \
+	/usr/local/nagios/libexec
+chown -R nagios:nagios /usr/local/nagios
+
+# Install all subcomponents
+if ! (cd ./subcomponents; ./install); then
+	echo "Subcomponents installation failed - exiting" >&2
+	exit 1
+fi
+
+echo "Subcomponents installed OK"
+touch installed.subcomponents
+

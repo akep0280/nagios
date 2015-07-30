@@ -1,0 +1,12 @@
+#!/bin/bash -e
+
+destdir=/usr/local/nagios/libexec
+
+echo "INSTALLING EXTRA PLUGINS..."
+
+cp -r plugins/* nagisk/nagisk.pl "$destdir"
+
+# FIX PERMS
+chown root:nagios "$destdir"/check_init_service
+chmod u+s "$destdir"/check_init_service
+

@@ -1,0 +1,41 @@
+#!/bin/bash
+
+pkgname=nsca-2.9.1
+
+echo NSCA
+
+# Delete the old archive
+rm -rf $pkgname
+
+# Extract archive
+tar xzf $pkgname.tar.gz
+
+# Save old config files
+if [ -f /usr/local/nagios/etc/nsca.cfg ]; then
+	mv /usr/local/nagios/etc/nsca.cfg /usr/local/nagios/etc/nsca.cfg.save
+fi
+if [ -f /usr/local/nagios/etc/send_nsca.cfg ]; then
+	mv /usr/local/nagios/etc/send_nsca.cfg /usr/local/nagios/etc/send_nsca.cfg.save
+fi
+
+# Make and install 
+(
+	cd $pkgname
+	./configure
+	make all
+	cp src/nsca /usr/local/nagios/bin
+	cp src/send_nsca /usr/local/nagios/libexec
+	#cp sample-config/nsca.cfg /usr/local/nagios/etc
+	#cp sample-config/send_nsca.cfg /usr/local/nagios/etc
+	cp sample-config/nsca.xinetd /etc/xinetd.d/nsca
+)
+
+# Restart xinetd
+if [ ! `command -v systemctl` ];then
+    service xinetd restart
+else
+    systemctl restart xinetd.service
+fi
+
+# Post-install modifications
+./post-install

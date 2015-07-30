@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/xiagents/!svn/ver/677/Linux%20NRPE%20Agent/linux-nrpe-agent/subcomponents/extraplugins
+END
+install
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/xiagents/!svn/ver/677/Linux%20NRPE%20Agent/linux-nrpe-agent/subcomponents/extraplugins/install
+END
+NOTES
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/xiagents/!svn/ver/4/Linux%20NRPE%20Agent/linux-nrpe-agent/subcomponents/extraplugins/NOTES
+END
+rrdtraf.tar.gz
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/xiagents/!svn/ver/4/Linux%20NRPE%20Agent/linux-nrpe-agent/subcomponents/extraplugins/rrdtraf.tar.gz
+END
+nagios-snmp-plugins.1.1.1.tgz
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/xiagents/!svn/ver/4/Linux%20NRPE%20Agent/linux-nrpe-agent/subcomponents/extraplugins/nagios-snmp-plugins.1.1.1.tgz
+END
+nagisk-1.1.1.tgz
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/xiagents/!svn/ver/4/Linux%20NRPE%20Agent/linux-nrpe-agent/subcomponents/extraplugins/nagisk-1.1.1.tgz
+END
