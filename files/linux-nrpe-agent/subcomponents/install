@@ -19,6 +19,7 @@ fi
 chown -R nagios:nagios /usr/local/nagios/var/spool
 
 XINETD_ALLOW=172.16.17.95
+ALLOW_INPUT=172.16.17.95
 cat <<-IPs_HERE; printf '### %-72s ###\n' $XINETD_ALLOW; cat <<-EOF
 
 
@@ -60,4 +61,3 @@ cat >>/etc/sudoers <<-EOF
 	#nagios ALL=NOPASSWD: /usr/local/nagios/libexec/check_asterisk_sip_peers.sh, /usr/local/nagios/libexec/nagisk.pl, /usr/sbin/asterisk
 
 EOF
-
