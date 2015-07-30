@@ -1,0 +1,9 @@
+[NRPE]
+title=Nagios Remote Plugin Executor
+description=Allows remote execution of Nagios plugins
+ports=5666/tcp
+
+[NSCA]
+title=Nagios Service Check Acceptor
+description=Allows integration of passive checks from remote machines
+ports=5667/tcp

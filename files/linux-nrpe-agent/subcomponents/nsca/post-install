@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo NSCA-POST
+
+# Post-install modifications
+
+# Config files
+cp -r mods/cfg/*.cfg /usr/local/nagios/etc
+
+# Set permissions
+for file in nsca.cfg send_nsca.cfg; do
+	chmod g+rw          "/usr/local/nagios/etc/$file"
+	chown nagios:nagios "/usr/local/nagios/etc/$file"
+done
+

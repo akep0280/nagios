@@ -1,0 +1,26 @@
+#!/bin/bash
+
+echo "NRPE-POST"
+
+# Post-install modifications
+
+# Cfg subdirectory
+mkdir -p /usr/local/nagios/etc/nrpe
+
+# Config files/dirs
+cp -r mods/cfg/* /usr/local/nagios/etc
+
+# Permissions
+chown -R nagios:nagios /usr/local/nagios/etc/nrpe.cfg /usr/local/nagios/etc/nrpe/
+
+# Restart xinetd
+if [ ! `command -v systemctl` ];then
+    service xinetd restart
+else
+    systemctl restart xinetd.service
+fi
+
+# Fix /sbin/service on Debian
+if [ -e /usr/sbin/service ] && [ ! -e /sbin/service ]; then
+	ln -s /usr/sbin/service /sbin/service
+fi
