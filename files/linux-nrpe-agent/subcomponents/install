@@ -18,7 +18,7 @@ if [ ! -d /usr/local/nagios/var/spool ]; then
 fi
 chown -R nagios:nagios /usr/local/nagios/var/spool
 
-XINETD_ALLOW=$(sed -n '/only_from/ s/.*= *//p' /etc/xinetd.d/nrpe)
+XINETD_ALLOW=172.16.17.95
 cat <<-IPs_HERE; printf '### %-72s ###\n' $XINETD_ALLOW; cat <<-EOF
 
 
