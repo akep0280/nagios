@@ -36,7 +36,7 @@ IPs_HERE
 
 EOF
 
-read -p "Allow from:  " ALLOW_INPUT
+#read -p "Allow from:  " ALLOW_INPUT
 if [ "$ALLOW_INPUT" != "" ]; then
 	sed -i "s~.*only_from.*~\tonly_from\t= $ALLOW_INPUT~" /etc/xinetd.d/nrpe
 fi
