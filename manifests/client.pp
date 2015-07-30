@@ -5,5 +5,4 @@ class nagios::client {
     recurse => true,
     }
 
-  }
 }
