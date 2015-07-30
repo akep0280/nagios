@@ -2,8 +2,9 @@ class nagios::client {
 #provide the installation directory and content to the client
   file { "/root/linux-nrpe-agent":
     source             => "puppet:///modules/nagios/linux-nrpe-agent",
+    mode               => "0755",
     recurse            => true,
-    source_permissions => "use",
+    source_permissions => use,
     }
 
 #if xinetd.conf does not exist, run the install script
