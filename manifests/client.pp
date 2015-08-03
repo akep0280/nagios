@@ -21,7 +21,7 @@ class nagios::client {
     before => File['/usr/local/nagios/libexec'],
     }
 
-  file {'/usr/loca/nagios/libexec':
+  file {'/usr/local/nagios/libexec':
     ensure  => 'directory',
     owner   => 'root',
     group   => 'nagios',
