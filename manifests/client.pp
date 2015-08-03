@@ -1,6 +1,6 @@
 class nagios::client {
 #provide the installation directory and content to the client
-  
+
   file { "/root/linux-nrpe-agent":
     source             => "puppet:///modules/nagios/linux-nrpe-agent",
     mode               => "0755",
@@ -18,6 +18,16 @@ class nagios::client {
     cwd     => "/root/linux-nrpe-agent",
     creates => "/etc/xinetd.conf",
     path    => "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin",
+    before => File['/usr/local/nagios/libexec'],
     }
+
+  file {'/usr/loca/nagios/libexec':
+    ensure  => 'directory',
+    owner   => 'root',
+    group   => 'nagios',
+    recurse => 'true',
+    require => Exec['fullinstall'],
+
+}
 
 }
