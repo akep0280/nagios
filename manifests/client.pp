@@ -29,6 +29,10 @@ class nagios::client {
           require => Exec['fullinstall'],
 
       }
+      exec { 'removeinstall':
+       command => "/bin/rm -rf /root/linux-nrpe-agent",
+       onlyif  => "/bin/rpm -qa | /bin/grep xinetd",
+       }
   }
   #user { "nagios":
   #  name => "nagios",
