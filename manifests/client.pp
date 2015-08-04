@@ -21,6 +21,14 @@ class nagios::client {
         path    => "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin",
         before => File['/usr/local/nagios/libexec'],
         }
+        file {'/usr/local/nagios/libexec':
+          ensure  => 'directory',
+          owner   => 'root',
+          group   => 'nagios',
+          recurse => 'true',
+          require => Exec['fullinstall'],
+
+      }
   }
   #user { "nagios":
   #  name => "nagios",
@@ -36,14 +44,14 @@ class nagios::client {
   #  before => File['/usr/local/nagios/libexec'],
   #  }
 
-  file {'/usr/local/nagios/libexec':
-    ensure  => 'directory',
-    owner   => 'root',
-    group   => 'nagios',
-    recurse => 'true',
-    require => Exec['fullinstall'],
+  #file {'/usr/local/nagios/libexec':
+  #  ensure  => 'directory',
+  #  owner   => 'root',
+  #  group   => 'nagios',
+  #  recurse => 'true',
+  #  require => Exec['fullinstall'],
 
-}
+#}
 
  #exec { 'removeinstall':
   #command => "/bin/rm -rf /root/linux-nrpe-agent",
