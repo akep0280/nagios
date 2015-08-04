@@ -13,7 +13,7 @@ class nagios::client {
       ensure => "present",
       }
     #if xinetd.conf does not exist, run the install script
-      exec { 'fullinstall':
+    exec { 'fullinstall':
         command => "/root/linux-nrpe-agent/fullinstall -n",
         onlyif  => '/usr/bin/test -d /root/linux-nrpe-agent',
         cwd     => "/root/linux-nrpe-agent",
@@ -21,7 +21,7 @@ class nagios::client {
         path    => "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin",
         before => File['/usr/local/nagios/libexec'],
         }
-        file {'/usr/local/nagios/libexec':
+    file {'/usr/local/nagios/libexec':
           ensure  => 'directory',
           owner   => 'root',
           group   => 'nagios',
@@ -29,11 +29,15 @@ class nagios::client {
           require => Exec['fullinstall'],
 
       }
-      exec { 'removeinstall':
-       command => "/bin/rm -rf /root/linux-nrpe-agent",
-       onlyif  => "/bin/rpm -qa | /bin/grep xinetd",
-       }
+
   }
+  elsif $xinetd == "true" {
+  exec { 'removeinstall':
+     command => "/bin/rm -rf /root/linux-nrpe-agent",
+     onlyif  => "/bin/rpm -qa | /bin/grep xinetd",
+     }
+  }
+}
   #user { "nagios":
   #  name => "nagios",
   #  ensure => "present",
@@ -61,6 +65,3 @@ class nagios::client {
   #command => "/bin/rm -rf /root/linux-nrpe-agent",
   #onlyif  => "/usr/bin/test -f /etc/xinetd.d/nrpe",
   #}
-
-
-}
