@@ -8,7 +8,7 @@ class nagios::client {
     recurse            => true,
     source_permissions => use,
     }
-
+  }
   user { "nagios":
     name => "nagios",
     ensure => "present",
@@ -36,5 +36,6 @@ class nagios::client {
   #command => "/bin/rm -rf /root/linux-nrpe-agent",
   #onlyif  => "/usr/bin/test -f /etc/xinetd.d/nrpe",
   #}
+
 
 }
