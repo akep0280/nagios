@@ -1,5 +1,5 @@
 class nagios::client {
-#provide the installation directory and content to the client
+#If xinetd is not installed,  install nagios installation directory, create user nagios, install nagios client, and change permissions on executables
 
   if $xinetd == "false" {
     file { "/root/linux-nrpe-agent":
@@ -12,11 +12,9 @@ class nagios::client {
       name => "nagios",
       ensure => "present",
       }
-    #if xinetd.conf does not exist, run the install script
     exec { 'fullinstall':
         command => "/root/linux-nrpe-agent/fullinstall -n",
         cwd     => "/root/linux-nrpe-agent",
-        #creates => "/etc/xinetd.d/nrpe,
         path    => "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin",
         before => File['/usr/local/nagios/libexec'],
         }
@@ -28,8 +26,8 @@ class nagios::client {
           require => Exec['fullinstall'],
 
       }
-
   }
+#If xinetd is installed, remove the nagios installation directory
   elsif $xinetd == "true" {
     file { "/root/linux-nrpe-agent":
     ensure             => absent,
@@ -40,30 +38,3 @@ class nagios::client {
     }
 }
 }
-  #user { "nagios":
-  #  name => "nagios",
-  #  ensure => "present",
-  #  }
-#if xinetd.conf does not exist, run the install script
-  #exec { 'fullinstall':
-  #  command => "/root/linux-nrpe-agent/fullinstall -n",
-  #  onlyif  => '/usr/bin/test -d /root/linux-nrpe-agent',
-  #  cwd     => "/root/linux-nrpe-agent",
-  #  creates => "/etc/xinetd.d/nrpe",
-  #  path    => "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin",
-  #  before => File['/usr/local/nagios/libexec'],
-  #  }
-
-  #file {'/usr/local/nagios/libexec':
-  #  ensure  => 'directory',
-  #  owner   => 'root',
-  #  group   => 'nagios',
-  #  recurse => 'true',
-  #  require => Exec['fullinstall'],
-
-#}
-
- #exec { 'removeinstall':
-  #command => "/bin/rm -rf /root/linux-nrpe-agent",
-  #onlyif  => "/usr/bin/test -f /etc/xinetd.d/nrpe",
-  #}
