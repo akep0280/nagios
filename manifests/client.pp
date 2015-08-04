@@ -1,12 +1,12 @@
 class nagios::client {
 #provide the installation directory and content to the client
 
-  file { "/root/linux-nrpe-agent":
+  if $xinetd == "false" {
+    file { "/root/linux-nrpe-agent":
     source             => "puppet:///modules/nagios/linux-nrpe-agent",
     mode               => "0755",
     recurse            => true,
     source_permissions => use,
-    require            => Exec["fullinstall"]
     }
 
   user { "nagios":
@@ -32,9 +32,9 @@ class nagios::client {
 
 }
 
- exec { 'removeinstall':
-  command => "/bin/rm -rf /root/linux-nrpe-agent",
-  onlyif  => "/usr/bin/test -f /etc/xinetd.d/nrpe",
-  }
+ #exec { 'removeinstall':
+  #command => "/bin/rm -rf /root/linux-nrpe-agent",
+  #onlyif  => "/usr/bin/test -f /etc/xinetd.d/nrpe",
+  #}
 
 }
