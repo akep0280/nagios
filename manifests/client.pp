@@ -30,7 +30,7 @@ class nagios::client {
 
 }
 
- exec { 'removeinstall:'
+ exec { 'removeinstall':
   command => "rm -rf /root/linux-nrpe-agent",
   onlyif  => "test -f /etc/xinetd.d/nrpe"
   }
