@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if ! rpm -qa | grep -qw xinetd; then
+  echo "xinetd=false"
+  else
+  echo "xinetd=true"
+fi
