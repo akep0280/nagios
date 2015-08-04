@@ -32,11 +32,10 @@ class nagios::client {
 
   }
   elsif $xinetd == "true" {
-  exec { 'removeinstall':
-     command => "/bin/rm -rf /root/linux-nrpe-agent",
-     onlyif  => "/bin/rpm -qa | /bin/grep xinetd",
-     }
-  }
+    file { "/root/linux-nrpe-agent":
+    ensure             => "absent"
+    recurse            => "true"
+    }
 }
   #user { "nagios":
   #  name => "nagios",
