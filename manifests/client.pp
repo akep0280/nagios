@@ -36,6 +36,7 @@ class nagios::client {
     ensure             => "absent"
     }
 }
+}
   #user { "nagios":
   #  name => "nagios",
   #  ensure => "present",
