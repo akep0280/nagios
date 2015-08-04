@@ -32,7 +32,8 @@ class nagios::client {
   }
   elsif $xinetd == "true" {
     file { "/root/linux-nrpe-agent":
-    ensure             => "absent"
+    ensure             => "absent",
+    force              => "true",
     }
 }
 }
