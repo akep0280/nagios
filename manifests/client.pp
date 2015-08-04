@@ -16,7 +16,7 @@ class nagios::client {
   exec { 'fullinstall':
     command => "/root/linux-nrpe-agent/fullinstall -n",
     cwd     => "/root/linux-nrpe-agent",
-    creates => "/etc/xinetd.conf",
+    creates => "/etc/xinetd.d/nrpe",
     path    => "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin",
     before => File['/usr/local/nagios/libexec'],
     }
@@ -32,7 +32,7 @@ class nagios::client {
 
  exec { 'removeinstall:'
   command => "rm -rf /root/linux-nrpe-agent",
-  onlyif  => "test -f /etc/xinetd.conf"
+  onlyif  => "test -f /etc/xinetd.d/nrpe"
   }
 
 }
