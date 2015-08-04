@@ -34,7 +34,6 @@ class nagios::client {
   elsif $xinetd == "true" {
     file { "/root/linux-nrpe-agent":
     ensure             => "absent"
-    recurse            => "true"
     }
 }
   #user { "nagios":
